@@ -10,15 +10,12 @@ for i, page_list in enumerate(update_list):
     for a, b in rule_list:
         if {a, b} <= set(page_list):
             used_rules_per_update[i].append([a, b])
-part1 = 0
-part2 = 0
+result = [0, 0]
 for i, rule in enumerate(used_rules_per_update):
     page_list = update_list[i]
     first_rules = [x[0] for x in rule]
     ordered_rules = list(reversed(sorted(set(first_rules), key=lambda x: first_rules.count(x))))
-    if ordered_rules == page_list[:-1]:
-        part1 += page_list[(len(page_list) - 1) // 2]
-    else:
-        part2 += ordered_rules[(len(page_list)) // 2]
+    middle = ordered_rules[(len(page_list)) // 2]
+    result[ordered_rules != page_list[:-1]] += middle
 
-print(part1, part2)
+print(*result)
