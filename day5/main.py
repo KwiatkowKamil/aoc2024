@@ -1,5 +1,3 @@
-from collections import Counter
-
 with open('input.txt') as f:
     rules, updates = f.read().split("\n\n")
     rule_list = [[int(x) for x in rule.split('|')] for rule in rules.split('\n')]
