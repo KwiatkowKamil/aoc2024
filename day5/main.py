@@ -5,10 +5,9 @@ with open('input.txt') as f:
 
 result = [0, 0]
 for i, page_list in enumerate(update_list):
-    matching_rules = [[a, b] for a, b in rule_list if {a, b} <= set(page_list)]
+    matching_rules = [a for a, b in rule_list if {a, b} <= set(page_list)]
     page_list = update_list[i]
-    first_rules = [x[0] for x in matching_rules]
-    ordered_rules = sorted(set(first_rules), key=lambda x: first_rules.count(x))[::-1]
+    ordered_rules = sorted(set(matching_rules), key=lambda x: matching_rules.count(x))[::-1]
     result[ordered_rules != page_list[:-1]] += ordered_rules[(len(page_list)) // 2]
 
 print(*result)
