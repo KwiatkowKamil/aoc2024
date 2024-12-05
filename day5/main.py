@@ -15,7 +15,6 @@ for i, rule in enumerate(used_rules_per_update):
     page_list = update_list[i]
     first_rules = [x[0] for x in rule]
     ordered_rules = list(reversed(sorted(set(first_rules), key=lambda x: first_rules.count(x))))
-    middle = ordered_rules[(len(page_list)) // 2]
-    result[ordered_rules != page_list[:-1]] += middle
+    result[ordered_rules != page_list[:-1]] += ordered_rules[(len(page_list)) // 2]
 
 print(*result)
