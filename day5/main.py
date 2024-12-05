@@ -4,9 +4,8 @@ with open('input.txt') as f:
     update_list = [[int(x) for x in update.split(',')] for update in updates.split('\n')]
 
 result = [0, 0]
-for i, page_list in enumerate(update_list):
+for page_list in update_list:
     matching_rules = [a for a, b in rule_list if {a, b} <= set(page_list)]
-    page_list = update_list[i]
     ordered_rules = sorted(set(matching_rules), key=lambda x: matching_rules.count(x))[::-1]
     result[ordered_rules != page_list[:-1]] += ordered_rules[(len(page_list)) // 2]
 
